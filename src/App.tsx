@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import TodoPage from "./Components/TodoPage";
+import UserItemPage from "./Components/UserItemPage";
+import UserPage from "./Components/UserPage";
+// import Card, { CardVariant } from "./Components/Card";
+// import Events from "./Components/Events";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <div>
+          <Link to={"/userpage"} style={{ marginRight: 20 }}>
+            пользователи
+          </Link>
+          <Link to={"/todopage"}>список дел</Link>
+        </div>
+        <Routes>
+          <Route element={<UserPage />} path={"/userpage"} />
+          <Route element={<TodoPage />} path={"/todopage"} />
+          <Route element={<UserItemPage />} path={"/userpage/:id"} />
+          <Route />
+        </Routes>
+      </BrowserRouter>
+      {/* <Events />
+      <Card
+        onClick={num => console.log("Click", num)}
+        variant={CardVariant.primary}
+        height="200px"
+        width="200px">
+        <button>qwert</button>
+      </Card> */}
+    </>
   );
 }
 
